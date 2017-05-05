@@ -92,7 +92,7 @@ ack(Channel, Message) ->
 resolve_uri(Uri) ->
     {ok, {Scheme, _UserInfo, Host, PortNo, Path, Query}} =
         http_uri:parse(Uri, [{scheme_defaults, [{coap, ?DEFAULT_COAP_PORT}, {coaps, ?DEFAULT_COAPS_PORT}]}]),
-    {ok, PeerIP} = inet:getaddr(Host, inet),
+    {ok, PeerIP} = inet:getaddr(Host, inet6),
     {Scheme, {PeerIP, PortNo}, split_path(Path), split_query(Query)}.
 
 split_path([]) -> [];
