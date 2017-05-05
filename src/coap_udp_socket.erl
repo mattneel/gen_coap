@@ -35,7 +35,7 @@ close(Pid) ->
 
 
 init([InPort]) ->
-    {ok, Socket} = gen_udp:open(InPort, [binary, {active, true}, {reuseaddr, true}]),
+    {ok, Socket} = gen_udp:open(InPort, [binary, inet6, {active, true}, {reuseaddr, true}]),
     %{ok, InPort2} = inet:port(Socket),
     %error_logger:info_msg("coap listen on *:~p~n", [InPort2]),
     {ok, #state{sock=Socket, chans=dict:new()}};
